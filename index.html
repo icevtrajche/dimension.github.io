@@ -66,26 +66,24 @@ Ich freue mich immer darauf, mit kreativen und inspirierenden Menschen zusammenz
 						<!-- Contact -->
 							<article id="contact">
 								<h2 class="major">Contact</h2>
-								<form method="post" onsubmit="formatMailto(event)">
-    <div class="fields">
-        <div class="field half">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" required />
-        </div>
-        <div class="field half">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" required />
-        </div>
-        <div class="field">
-            <label for="message">Message</label>
-            <textarea name="message" id="message" rows="4" required></textarea>
-        </div>
-    </div>
-    <ul class="actions">
-        <li><input type="submit" value="Send Message" class="primary" /></li>
-        <li><input type="reset" value="Reset" /></li>
-    </ul>
+								<form method="post" action="mailto:icev.trajche@johak.at?subject=Website%20Message">
+    <input type="text" name="name" id="name" placeholder="Name" required />
+    <input type="email" name="email" id="email" placeholder="Email" required />
+    <textarea name="message" id="message" rows="4" placeholder="Message" required></textarea>
+    <input type="submit" value="Send Message" class="primary" onclick="formatMailto()" />
 </form>
+
+<script>
+function formatMailto() {
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let message = document.getElementById("message").value;
+
+    let mailtoLink = `mailto:icev.trajche@johak.at?subject=Website Message&body=Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`;
+    
+    window.location.href = mailtoLink;
+}
+</script>
 
 					
 								<ul class="icons">
