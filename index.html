@@ -66,21 +66,24 @@ Ich freue mich immer darauf, mit kreativen und inspirierenden Menschen zusammenz
 						<!-- Contact -->
 							<article id="contact">
 								<h2 class="major">Contact</h2>
-								<form method="post" action="mailto:icev.trajche@johak.at?subject=Website%20Message">
+								<form method="post" onsubmit="formatMailto(event)">
     <input type="text" name="name" id="name" placeholder="Name" required />
     <input type="email" name="email" id="email" placeholder="Email" required />
     <textarea name="message" id="message" rows="4" placeholder="Message" required></textarea>
-    <input type="submit" value="Send Message" class="primary" onclick="formatMailto()" />
+    <input type="submit" value="Send Message" class="primary" />
 </form>
 
 <script>
-function formatMailto() {
-    let name = document.getElementById("name").value;
-    let email = document.getElementById("email").value;
-    let message = document.getElementById("message").value;
+function formatMailto(event) {
+    event.preventDefault(); // Verhindert das Standard-Formularverhalten
 
-    let mailtoLink = `mailto:icev.trajche@johak.at?subject=Website Message&body=Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`;
-    
+    let name = encodeURIComponent(document.getElementById("name").value);
+    let email = encodeURIComponent(document.getElementById("email").value);
+    let message = encodeURIComponent(document.getElementById("message").value);
+
+    let mailtoLink = `mailto:icev.trajche@johak.at?subject=Website Message` +
+                     `&body=Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`;
+
     window.location.href = mailtoLink;
 }
 </script>
